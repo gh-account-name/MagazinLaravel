@@ -1,7 +1,3 @@
-/node_modules
-/public/build
-/public/hot
-/vendor
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
