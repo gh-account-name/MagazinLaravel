@@ -23,6 +23,10 @@ Route::get('/registration', [\App\Http\Controllers\PageController::class, 'regis
 
 Route::get('/auth', [\App\Http\Controllers\PageController::class, 'authPage'])->name('authPage');
 
+
+
 //--Функции
 
 Route::post('/registration/save', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
+
+Route::post('/auth', [\App\Http\Controllers\UserController::class, 'auth'])->name('auth');
