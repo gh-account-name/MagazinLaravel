@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -53,6 +54,7 @@ class UserController extends Controller
     }
 
     public function auth(Request $request){
+        $user = User::query()->where('login', $request->login)->where('password',md5($request->password))->first();
         $request->validate([
            'login'=>['required', 'regex:/[A-Za-zА-ЯЁа-яё0-9]/u'],
            'password'=>[['required', 'min:6', 'max:12']],
@@ -63,5 +65,21 @@ class UserController extends Controller
             'password.min'=>'Минимальная длина пароля: 6 символов',
             'password.max'=>'Максимальная длина пароля: 12 символов',
         ]);
+
+        if($user){
+            Auth::login($user);
+            if ($user->role === 'admin'){
+                return redirect()->route('adminPage');
+            } else {
+                return redirect()->route('aboutUs');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Неверный логин или пароль');
+        }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('aboutUs');
     }
 }

@@ -7,8 +7,24 @@
 @section('main')
     <div class="container" id="regApp">
         <div class="row justify-content-center"><h2 class="text-center m-5">Авторизация</h2></div>
+        @if(session()->has('success'))
+            <div class="container col-4">
+                <div class="alert text-center alert-success">
+                    {{session('success')}}
+                </div>
+            </div>
+        @endif
+
+        @if(session()->has('error'))
+            <div class="container col-4">
+                <div class="alert text-center alert-danger">
+                    {{session('error')}}
+                </div>
+            </div>
+        @endif
+
         <div class="row justify-content-center">
-            <form class="col-5" id="form" method="post" action="#">
+            <form class="col-5" id="form" method="post" action="{{route('auth')}}">
                 @csrf
                 @method('post')
                 <div class="mb-3">

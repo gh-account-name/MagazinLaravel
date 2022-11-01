@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Route;
 //--Страницы
 Route::get('/', function () {
     return view('welcome');
-})->name('abouUs');
+})->name('aboutUs');
 
 Route::get('/registration', [\App\Http\Controllers\PageController::class, 'registrationPage'])->name('registrationPage');
 
 Route::get('/auth', [\App\Http\Controllers\PageController::class, 'authPage'])->name('authPage');
 
+Route::get('/admin', [\App\Http\Controllers\PageController::class, 'adminPage'])->name('adminPage');
 
 
 //--Функции
@@ -30,3 +31,9 @@ Route::get('/auth', [\App\Http\Controllers\PageController::class, 'authPage'])->
 Route::post('/registration/save', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
 
 Route::post('/auth', [\App\Http\Controllers\UserController::class, 'auth'])->name('auth');
+
+Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+
+//--Middleware
+
+Route::post('/addCategory', [\App\Http\Controllers\CategryController::class, 'addCategory'])->name('addCategory');

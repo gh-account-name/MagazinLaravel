@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light bg-dark">
     <div class="container-fluid container">
-        <a class="navbar-brand text-white" href="{{route('abouUs')}}">ComixCom</a>
+        <a class="navbar-brand text-white" href="{{route('aboutUs')}}">ComixCom</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,12 +9,25 @@
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
                 </li>
+                @guest()
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{route('authPage')}}">Авторизация</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{route('registrationPage')}}">Регистрация</a>
                 </li>
+                @endguest
+
+                @auth()
+                    @if(\Illuminate\Support\Facades\Auth::user()->role === 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{route('adminPage')}}">Админ</a>
+                        </li>
+                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{route('logout')}}">Выйти</a>
+                    </li>
+                @endauth
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
