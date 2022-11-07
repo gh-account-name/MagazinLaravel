@@ -6,7 +6,7 @@
 
 @section('main')
     <div class="container d-flex flex-column align-items-center">
-        <h2>Создать категорию</h2>
+        <h2 class="mt-5">Создать категорию</h2>
         <form action="{{route('addCategory')}}" style="padding: 40px;" class="col-4" method="post">
             @csrf
             @method('post')
@@ -35,8 +35,8 @@
                         <th scope="row">{{$key+1}}</th>
                         <td>{{$category->title}}</td>
                         <td class="d-flex justify-content-sm-around">
-                            <a href="#"><button type="button" class="btn btn-success">Редактировать</button></a>
-                            <form action="#" method="post">
+                            <a href="{{route('editCategoryPage', ['category'=>$category])}}"><button type="button" class="btn btn-success">Редактировать</button></a>
+                            <form action="{{route('deleteCategory', ['category'=>$category])}}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-danger">Удалить</button>
@@ -47,8 +47,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="d-flex justify-content-center align-items-center m-5">
-        <a href="#" class="col-5 d-flex justify-content-center"><button class="col-5 btn btn-primary mt-3">Добавить товар</button></a>
     </div>
 @endsection

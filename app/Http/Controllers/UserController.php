@@ -69,7 +69,7 @@ class UserController extends Controller
         if($user){
             Auth::login($user);
             if ($user->role === 'admin'){
-                return redirect()->route('adminPage');
+                return redirect()->route('categoriesPage');
             } else {
                 return redirect()->route('aboutUs');
             }

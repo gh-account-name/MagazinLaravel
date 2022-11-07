@@ -23,9 +23,6 @@ Route::get('/registration', [\App\Http\Controllers\PageController::class, 'regis
 
 Route::get('/auth', [\App\Http\Controllers\PageController::class, 'authPage'])->name('authPage');
 
-Route::get('/admin', [\App\Http\Controllers\PageController::class, 'adminPage'])->name('adminPage');
-
-
 //--Функции
 
 Route::post('/registration/save', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
@@ -36,4 +33,20 @@ Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->
 
 //--Middleware
 
-Route::post('/addCategory', [\App\Http\Controllers\CategryController::class, 'addCategory'])->name('addCategory');
+Route::group(['middleware'=>['auth', 'admin'], 'prefix'=>'admin'], function (){
+
+    Route::get('/categories', [\App\Http\Controllers\PageController::class, 'categoriesPage'])->name('categoriesPage');
+
+    Route::post('/addCategory', [\App\Http\Controllers\CategryController::class, 'addCategory'])->name('addCategory');
+
+    Route::get('/edit/{category}', [\App\Http\Controllers\PageController::class, 'editCategoryPage'])->name('editCategoryPage');
+
+    Route::put('/update/{category}', [\App\Http\Controllers\CategryController::class, 'update'])->name('updateCategory');
+
+    Route::delete('/delete/{category}', [\App\Http\Controllers\CategryController::class, 'destroy'])->name('deleteCategory');
+
+});
+
+
+
+

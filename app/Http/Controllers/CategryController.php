@@ -15,9 +15,9 @@ class CategryController extends Controller
     }
 
     public function update(Request $request, Categry $category){
-        $category->name = $request->name;
+        $category->title = $request->title;
         $category->update();
-        return redirect()->route('admin');
+        return redirect()->route('categoriesPage');
     }
 
     public function destroy(Categry $category){
