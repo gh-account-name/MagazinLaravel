@@ -32,6 +32,12 @@ class PageController extends Controller
 
     public function productsPage(){
         $categories = Categry::all();
-        return view('admin.products', ['categories'=>$categories]);
+        $products = Product::all();
+        return view('admin.products', ['categories'=>$categories, 'products'=>$products]);
+    }
+
+    public function editProductPage(Product $product){
+        $categories = Categry::all();
+        return view('admin.editProduct', ['product'=>$product, 'categories'=>$categories]);
     }
 }

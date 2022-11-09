@@ -11,7 +11,7 @@
         }
     }
 
-    
+
 </style>
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid container">
@@ -66,7 +66,7 @@
             @auth()
                 <div class="userIcon" style="display: flex; align-items: center; justify-content: center;">
                     <span class="d-flex justify-content-center align-items-center" style="margin-right: 10px ;background-color: white; border-radius: 100px; width: 45px; height: 45px;">
-                        <img style="width: 100%;" src="{{asset('public/storage/user-icon.png')}}" alt="Avatar">
+                        <img style="width: 100%;" src="{{asset('public/storage/public/user-icon.png')}}" alt="Avatar">
                     </span>
                     <p class="text-white" style="margin: 0!important; font-weight: bold">{{\Illuminate\Support\Facades\Auth::user()->login}}</p>
                 </div>

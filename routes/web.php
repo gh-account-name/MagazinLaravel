@@ -53,6 +53,10 @@ Route::group(['middleware'=>['auth', 'admin'], 'prefix'=>'admin'], function (){
 
     Route::post('/addProduct', [ProductController::class, 'addProduct'])->name('addProduct');
 
+    Route::get('/editProduct/{product}', [PageController::class, 'editProductPage'])->name('editProductPage');
+
+    Route::put('/updateProduct/{product}', [ProductController::class, 'update'])->name('updateProduct');
+
 });
 
 

@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="{{asset('public/css/bootstrap.min.css')}}">
     <script src="{{asset('public/js/bootstrap.bundle.js')}}"></script>
 </head>
-<body>
+<style>
+    body{
+        color: white !important;
+    }
+</style>
+<body style="background-color: #494949">
 <script src="{{asset('public/js/vue.global.js')}}"></script>
 @include('layout.navbar')
 @yield('main')
