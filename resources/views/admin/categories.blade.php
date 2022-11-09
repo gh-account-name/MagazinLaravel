@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title')
-    Админ панель
+    Категории
 @endsection
 
 @section('main')

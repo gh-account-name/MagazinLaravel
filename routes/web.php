@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +33,8 @@ Route::post('/auth', [\App\Http\Controllers\UserController::class, 'auth'])->nam
 
 Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 
+Route::get('/catalog', [PageController::class, 'catalogPage'])->name('catalogPage');
+
 //--Middleware
 
 Route::group(['middleware'=>['auth', 'admin'], 'prefix'=>'admin'], function (){
@@ -44,6 +48,10 @@ Route::group(['middleware'=>['auth', 'admin'], 'prefix'=>'admin'], function (){
     Route::put('/update/{category}', [\App\Http\Controllers\CategryController::class, 'update'])->name('updateCategory');
 
     Route::delete('/delete/{category}', [\App\Http\Controllers\CategryController::class, 'destroy'])->name('deleteCategory');
+
+    Route::get('/products', [PageController::class, 'productsPage'])->name('productsPage');
+
+    Route::post('/addProduct', [ProductController::class, 'addProduct'])->name('addProduct');
 
 });
 
