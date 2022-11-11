@@ -12,7 +12,7 @@
         @method('post')
         <div class="mb-3">
             <label for="title" class="form-label">Название</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title">
+            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{old('title')}}">
             <div class="invalid-feedback">
                 @error('title')
                 {{$message}}
@@ -20,10 +20,10 @@
             </div>
         </div>
 
-        <select id="category" name="category" class="form-select @error('category') is-invalid @enderror mb-3 mt-4" aria-label="Default select example">
+        <select id="category" name="category" class="form-select @error('category') is-invalid @enderror mt-4" aria-label="Default select example">
             <option selected disabled>Категория</option>
             @foreach($categories as $category)
-                <option value="{{$category->id}}">{{$category->title}}</option>
+                <option @if(old('category')==$category->id) selected @endif value="{{$category->id}}">{{$category->title}}</option>
             @endforeach
         </select>
         <div class="invalid-feedback">
@@ -32,7 +32,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 mt-3">
             <label for="img" class="form-label">Картинка</label>
             <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img">
             <div class="invalid-feedback">
@@ -44,7 +44,7 @@
 
         <div class="mb-3">
             <label for="age" class="form-label">Дата издания</label>
-            <input class="form-control @error('age') is-invalid @enderror" type="date" id="age" name="age" >
+            <input class="form-control @error('age') is-invalid @enderror" type="date" id="age" name="age" value="{{old('age')}}" >
             <div class="invalid-feedback">
                 @error('age')
                 {{$message}}
@@ -54,7 +54,7 @@
 
         <div class="mb-3">
             <label for="antagonist" class="form-label">Антагонист</label>
-            <input class="form-control @error('antagonist') is-invalid @enderror" type="text" id="antagonist" name="antagonist" >
+            <input class="form-control @error('antagonist') is-invalid @enderror" type="text" id="antagonist" name="antagonist" value="{{old('antagonist')}}" >
             <div class="invalid-feedback">
                 @error('antagonist')
                 {{$message}}
@@ -64,7 +64,7 @@
 
         <div class="mb-3">
             <label for="price" class="form-label">Цена</label>
-            <input class="form-control @error('price') is-invalid @enderror" type="number" id="price" name="price" >
+            <input class="form-control @error('price') is-invalid @enderror" type="text" id="price" name="price" value="{{old('price')}}" >
             <div class="invalid-feedback">
                 @error('price')
                 {{$message}}
@@ -74,7 +74,7 @@
 
         <div class="mb-3">
             <label for="count" class="form-label">Количество товара в наличии</label>
-            <input class="form-control @error('count') is-invalid @enderror" type="number" id="count" name="count" >
+            <input class="form-control @error('count') is-invalid @enderror" type="number" id="count" name="count" value="{{old('count')}}" >
             <div class="invalid-feedback">
                 @error('count')
                 {{$message}}
@@ -93,11 +93,15 @@
             <div class="col d-flex justify-content-center">
                 <div href="#" class="card" style="text-decoration: none; display: flex; background-color: white; flex-direction: column; width: 280px; min-height: 350px; padding: 20px; border-radius: 20px ; align-items: center; margin-top:50px ;box-shadow: 2px 2px 5px black">
                     <img style="height: 80%;" src="{{$product->img}}" alt="product" class="card-img">
-                    <p style="font-size: 18px; font-weight: bold; color: black; margin: 0" class=" text-center mt-2">{{$product->title}}</p>
+                    <a href="#" style="font-size: 18px; font-weight: bold; color: black; margin: 0; text-decoration:none" class=" text-center mt-2">{{$product->title}}</a>
                     <p style="font-size: 18px; font-weight: bold; color: black; margin: 0" class="text-center">{{$product->price}} р.</p>
                     <div class="buttons d-flex justify-content-between mt-3 w-100">
                         <a href="{{route('editProductPage', ['product'=>$product])}}"><button type="button" class="btn btn-warning" style="font-size: 12px">Редактировать</button></a>
-                        <button type="button" class="btn btn-danger" style="font-size: 12px">Удалить</button>
+                        <form action="{{route('deleteProduct', ['product'=>$product])}}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger" style="font-size: 12px">Удалить</button>
+                        </form>
                     </div>
                 </div>
             </div>

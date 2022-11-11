@@ -5,6 +5,12 @@
 @endsection
 
 @section('main')
+    <style>
+        table{
+            color: white !important;
+        }
+    </style>
+
     <div class="container d-flex flex-column align-items-center">
         <h2 class="mt-5">Создать категорию</h2>
         <form action="{{route('addCategory')}}" style="padding: 40px;" class="col-4" method="post">

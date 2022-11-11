@@ -34,7 +34,7 @@
 
             <div class="mb-3">
                 <label for="img" class="form-label">Картинка</label>
-                <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{$product->img}}">
+                <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img">
                 <div class="invalid-feedback">
                     @error('img')
                     {{$message}}
