@@ -25,6 +25,8 @@ Route::get('/registration', [\App\Http\Controllers\PageController::class, 'regis
 
 Route::get('/auth', [\App\Http\Controllers\PageController::class, 'authPage'])->name('authPage');
 
+//Route::get('/catalog', [PageController::class, 'catalogPage'])->name('catalogPage');
+
 //--Функции
 
 Route::post('/registration/save', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
@@ -33,7 +35,11 @@ Route::post('/auth', [\App\Http\Controllers\UserController::class, 'auth'])->nam
 
 Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 
-Route::get('/catalog', [PageController::class, 'catalogPage'])->name('catalogPage');
+Route::get('/catalog/filter', [ProductController::class, 'filter'])->name('filter');
+
+Route::get('/catalog/sort', [ProductController::class, 'sort'])->name('sort');
+
+Route::get('/catalog', [ProductController::class, 'sort_filter'])->name('sort_filter');
 
 //--Middleware
 

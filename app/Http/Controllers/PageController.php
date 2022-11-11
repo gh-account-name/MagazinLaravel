@@ -26,8 +26,9 @@ class PageController extends Controller
     }
 
     public function catalogPage(){
-        $products = Product::all();
-        return view('product.catalog', ['products'=>$products]);
+        $products = Product::query()->paginate(3);
+        $categories = Categry::all();
+        return view('product.catalog', ['products'=>$products, 'categories'=>$categories]);
     }
 
     public function productsPage(){

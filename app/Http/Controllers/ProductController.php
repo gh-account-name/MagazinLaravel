@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categry;
 use App\Models\Product;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Storage;
@@ -96,5 +97,51 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
+    public function filter(Request $request){
+
+        $categories = Categry::all();
+
+        $products = Product::query()->paginate(3)->withQueryString();
+
+        if ($request->category && $request->category!==0){
+            $products = Product::query()->where('categry_id', $request->category)->paginate(3)->withQueryString();
+        }
+
+        return view('product.catalog', ['products'=>$products, 'categories'=>$categories]);
+
+    }
+
+    public function sort(Request $request){
+        $categories = Categry::all();
+
+        if ($request->parameter){
+            $products = Product::query()->orderBy($request->parameter)->paginate(3)->withQueryString();
+        } else {
+            $products = Product::query()->orderBy('title')->paginate(3)->withQueryString();
+        }
+
+        return view('product.catalog', ['products'=>$products, 'categories'=>$categories]);
+
+    }
+
+    public function sort_filter(Request $request){
+
+        $categories = Categry::all();
+
+        $products = Product::query()->orderBy('created_at')->paginate(3)->withQueryString();
+
+//        if ($request->category && $request->category!==0){
+//            $products = $products->where('categry_id', $request->category)->paginate(3)->withQueryString();
+//        }
+//
+//        if ($request->parameter){
+//            $products = $products->orderBy($request->parameter)->paginate(3)->withQueryString();
+//        }
+//        else {
+//            $products = Product::query()->orderBy('updated_at')->paginate(3)->withQueryString();
+//        }
+
+        return view('product.catalog', ['products'=>$products, 'categories'=>$categories]);
+    }
 
 }
