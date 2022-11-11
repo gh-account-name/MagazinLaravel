@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     public function addProduct(Request $request){
 
         $request->validate([
-            'title' => ['required', 'regex:/[А-Яа-яЁё]/u'],
+            'title' => ['required'],
             'img' => ['required', 'mimes:png,jpg,jpeg', 'max:1024'],
             'category' => ['required'],
             'price' => ['required', 'numeric', 'regex:/^\d*$|^\d*\.\d{1,2}$/'],
@@ -54,7 +54,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product){
 
         $request->validate([
-            'title' => ['required', 'regex:/[А-Яа-яЁё]/u'],
+            'title' => ['required'],
             'img' => ['mimes:png,jpg,jpeg','max:1024'],
            'category' => ['required'],
             'price' => ['required', 'numeric'],
@@ -91,7 +91,7 @@ class ProductController extends Controller
     }
 
     public function destroy(Product $product){
-        Storage::delete($product->img);
+        // Storage::disk('public')->delete($product->img);
         $product->delete();
         return redirect()->back();
     }
