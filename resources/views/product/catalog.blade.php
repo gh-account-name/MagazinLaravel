@@ -8,26 +8,31 @@
     <div class="container">
         <h1 class="text-center mt-5">Каталог</h1>
 
-        <div class="sort-filter d-flex justify-content-between col-4">
-            <form class="filter" action="{{route('sort_filter')}}">
-                <label for="category">Фильтрация по категориям:</label>
-                <select id="category" name="category" class="form-select">
-                    <option value="0">Все</option>
-                    @foreach($categories as $category)
-                        <option value="{{$category->id}}">{{$category->title}}</option>
-                    @endforeach
-                </select>
+        <div class="sort-filter d-flex justify-content-between col-5">
+            <form class="filter d-flex justify-content-between w-100" action="{{route('sort_filter')}}">
+                <span>
+                    <label for="category">Фильтрация по категориям:</label>
+                    <select id="category" name="category" class="form-select">
+                        <option value="0">Все</option>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->title}}</option>
+                        @endforeach
+                    </select>
+                </span>
 {{--                <button type="submit" class="btn btn-primary mt-5">Применить</button>--}}
 {{--            </form>--}}
 
 {{--            <form class="sort" action="{{route('sort')}}">--}}
-                <label for="parameter">Сортировка по:</label>
-                <select id="parameter" name="parameter" class="form-select">
-                    <option value="title">Наименованию</option>
-                    <option value="price">Цене</option>
-                    <option value="count">Количеству</option>
-                </select>
-                <button type="submit" class="btn btn-primary mt-5">Применить</button>
+                <span>
+                    <label for="parameter">Сортировка по:</label>
+                    <select id="parameter" name="parameter" class="form-select">
+                        <option value="">Нет</option>
+                        <option value="title">Наименованию</option>
+                        <option value="price">Цене</option>
+                        <option value="count">Количеству</option>
+                    </select>
+                </span>
+                <button type="submit" class="btn btn-primary" style="transform: translateY(50%); height:70%">Применить</button>
             </form>
         </div>
 
