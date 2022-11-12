@@ -33,7 +33,7 @@ class PageController extends Controller
 
     public function productsPage(){
         $categories = Categry::all();
-        $products = Product::all();
+        $products = Product::query()->latest()->get();
         return view('admin.products', ['categories'=>$categories, 'products'=>$products]);
     }
 

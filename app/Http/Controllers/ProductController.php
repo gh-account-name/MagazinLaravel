@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categry;
 use App\Models\Product;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -92,7 +92,8 @@ class ProductController extends Controller
     }
 
     public function destroy(Product $product){
-        // Storage::disk('public')->delete($product->img);
+        $path = substr($product->img, 9);
+        Storage::delete($path);
         $product->delete();
         return redirect()->back();
     }
@@ -138,7 +139,7 @@ class ProductController extends Controller
             $products = $products->orderBy($request->parameter);
        }
 
-       $products = $products->latest()->paginate(3)->withQueryString();
+       $products = $products->latest()->paginate(6)->withQueryString();
 
         return view('product.catalog', ['products'=>$products, 'categories'=>$categories]);
     }

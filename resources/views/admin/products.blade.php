@@ -88,20 +88,49 @@
 
 <div class="container">
     <h1 class="text-center mt-5">Товары</h1>
-    <div class="products row row-cols-1 row-cols-md-3 g-4">
+{{--    <div class="products row row-cols-1 row-cols-md-3 g-4">--}}
+{{--        @foreach($products as $key=>$product)--}}
+{{--            <div class="col d-flex justify-content-center">--}}
+{{--                <div href="#" class="card" style="text-decoration: none; display: flex; background-color: white; flex-direction: column; width: 280px; min-height: 350px; padding: 20px; border-radius: 20px ; align-items: center; margin-top:50px ;box-shadow: 2px 2px 5px black">--}}
+{{--                    <img style="height: 80%;" src="{{$product->img}}" alt="product" class="card-img">--}}
+{{--                    <a href="#" style="font-size: 18px; font-weight: bold; color: black; margin: 0; text-decoration:none" class=" text-center mt-2">{{$product->title}}</a>--}}
+{{--                    <p style="font-size: 18px; font-weight: bold; color: black; margin: 0" class="text-center">{{$product->price}} р.</p>--}}
+{{--                    <div class="buttons d-flex justify-content-between mt-3 w-100">--}}
+{{--                        <a href="{{route('editProductPage', ['product'=>$product])}}"><button type="button" class="btn btn-warning" style="font-size: 12px">Редактировать</button></a>--}}
+{{--                        <form action="{{route('deleteProduct', ['product'=>$product])}}" method="post">--}}
+{{--                            @csrf--}}
+{{--                            @method('delete')--}}
+{{--                            <button type="submit" class="btn btn-danger" style="font-size: 12px">Удалить</button>--}}
+{{--                        </form>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        @endforeach--}}
+{{--    </div>--}}
+
+    <div class="products row row-cols-1 row-cols-md-3 g-5 mt-4">
         @foreach($products as $key=>$product)
             <div class="col d-flex justify-content-center">
-                <div href="#" class="card" style="text-decoration: none; display: flex; background-color: white; flex-direction: column; width: 280px; min-height: 350px; padding: 20px; border-radius: 20px ; align-items: center; margin-top:50px ;box-shadow: 2px 2px 5px black">
-                    <img style="height: 80%;" src="{{$product->img}}" alt="product" class="card-img">
-                    <a href="#" style="font-size: 18px; font-weight: bold; color: black; margin: 0; text-decoration:none" class=" text-center mt-2">{{$product->title}}</a>
-                    <p style="font-size: 18px; font-weight: bold; color: black; margin: 0" class="text-center">{{$product->price}} р.</p>
-                    <div class="buttons d-flex justify-content-between mt-3 w-100">
-                        <a href="{{route('editProductPage', ['product'=>$product])}}"><button type="button" class="btn btn-warning" style="font-size: 12px">Редактировать</button></a>
-                        <form action="{{route('deleteProduct', ['product'=>$product])}}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger" style="font-size: 12px">Удалить</button>
-                        </form>
+                {{--                    <a href="#" class="card" style="text-decoration: none; display: flex; background-color: white; flex-direction: column; width: 280px; height:380px; padding: 20px; border-radius: 20px ; align-items: center; margin-top:50px ;box-shadow: 2px 2px 5px black">--}}
+                {{--                        <img style="height: 80%;" src="{{$product->img}}" alt="product" >--}}
+                {{--                        <p style="font-size: 18px; font-weight: bold; color: black; margin: 0" class=" text-center mt-2">{{$product->title}}</p>--}}
+                {{--                        <p style="font-size: 18px; font-weight: bold; color: black; margin: 0" class="text-center">{{$product->price}} р.</p>--}}
+                {{--                    </a>--}}
+                <div class="card" style="width: 300px; box-shadow: 0px 0px 10px black; text-decoration: none">
+                    <img src="{{$product->img}}" class="card-img-top" alt="..." style="height: 100%">
+                    <div class="card-body" style="position: relative">
+                        <a href="#" class="text-decoration-none"><h5 class="card-title text-center text-black" style="height: 50px">{{$product->title}}</h5></a>
+                        <p class="card-text text-black">{{$product->price}} руб.</p>
+                        <p class="card-text text-black">Количество на скаладе: {{$product->count}}</p>
+                        <p class="card-text text-black">Категория: {{$product->category}}</p>
+                        <div class="buttons d-flex justify-content-between mt-3 w-100">
+                            <a href="{{route('editProductPage', ['product'=>$product])}}"><button type="button" class="btn btn-warning" style="font-size: 12px">Редактировать</button></a>
+                            <form action="{{route('deleteProduct', ['product'=>$product])}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger" style="font-size: 12px">Удалить</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

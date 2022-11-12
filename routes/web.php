@@ -39,7 +39,7 @@ Route::get('/catalog/filter', [ProductController::class, 'filter'])->name('filte
 
 Route::get('/catalog/sort', [ProductController::class, 'sort'])->name('sort');
 
-Route::get('/catalog', [ProductController::class, 'sort_filter'])->name('sort_filter');
+Route::get('/catalog', [ProductController::class, 'sort_filter'])->name('catalogPage');
 
 //--Middleware
 
