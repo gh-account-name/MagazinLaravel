@@ -14,7 +14,7 @@
 
 </style>
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid container">
+    <div class="container-fluid container" style="background-color: transparent; min-height:auto; padding-bottom:0;">
         <a class="navbar-brand text-white" href="{{route('welcomePage')}}">ComixCom</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

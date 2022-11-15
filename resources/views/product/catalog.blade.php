@@ -16,6 +16,7 @@
         @media (max-width: 1200px) {
             .sort-filter{
                 width: 60%;
+                margin-left: 0 !important;
             }
         }
 
@@ -49,9 +50,9 @@
     </style>
 
     <div class="container">
-        <h1 class="text-center mt-5">Каталог</h1>
+        <h1 class="text-center m-5">Каталог</h1>
 
-        <div class="sort-filter d-flex justify-content-between col-5" style="margin-bottom: 100px">
+        <div class="sort-filter d-flex justify-content-between col-5" style="margin-bottom: 70px; margin-left:4%">
             <form class="filter d-flex justify-content-between w-100" action="{{route('catalogPage')}}">
                 <span>
                     <label for="category">Фильтрация по категориям:</label>

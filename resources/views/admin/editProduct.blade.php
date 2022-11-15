@@ -6,7 +6,7 @@
 
 @section('main')
     <div class="container d-flex flex-column align-items-center">
-        <<h2 class="mt-5">Редактировать товар</h2>
+        <h2 class="mt-5">Редактировать товар</h2>
         <form action="{{route('updateProduct', ['product'=>$product])}}" style="padding: 40px;" class="col-6" method="post" enctype="multipart/form-data">
             @csrf
             @method('put')

@@ -5,6 +5,13 @@
 @endsection
 
 @section('main')
+
+    <style>
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(1) grayscale(100);
+        }
+    </style>
+
     <div class="container">
         <h1 class="text-center m-4">Главная</h1>
         <p class="text-center h4 mb-4">Новые товары уже доступны!</p>

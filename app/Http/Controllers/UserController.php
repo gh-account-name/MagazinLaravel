@@ -71,7 +71,7 @@ class UserController extends Controller
             if ($user->role === 'admin'){
                 return redirect()->route('categoriesPage');
             } else {
-                return redirect()->route('aboutUs');
+                return redirect()->route('welcomePage');
             }
         } else {
             return redirect()->back()->with('error', 'Неверный логин или пароль');
@@ -80,6 +80,6 @@ class UserController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('aboutUs');
+        return redirect()->route('welcomePage');
     }
 }

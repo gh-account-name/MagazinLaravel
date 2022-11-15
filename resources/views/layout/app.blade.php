@@ -11,10 +11,20 @@
 </head>
 <style>
     body{
-        color: white !important;
+        color: black !important;
+        background:linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url('https://wallpaper.dog/large/20515514.jpg');
+        /* background-size: cover; */
+    }
+    
+    .container{
+        background-color: white;
+        min-height: 100vh;
+        padding-bottom: 30px;
+        border-top: 1px solid transparent;
     }
 </style>
-<body style="background-color: #494949">
+<body>
 <script src="{{asset('public/js/vue.global.js')}}"></script>
 @include('layout.navbar')
 @yield('main')

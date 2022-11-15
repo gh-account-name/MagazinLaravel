@@ -16,7 +16,7 @@
         @endif
 
         @if(session()->has('error'))
-            <div class="container col-4">
+            <div class="col-12 d-flex justify-content-center">
                 <div class="alert text-center alert-danger">
                     {{session('error')}}
                 </div>
