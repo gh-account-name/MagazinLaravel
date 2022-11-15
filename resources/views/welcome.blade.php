@@ -6,7 +6,8 @@
 
 @section('main')
     <div class="container">
-        <h1 class="text-center m-5">Главная</h1>
+        <h1 class="text-center m-4">Главная</h1>
+        <p class="text-center h4 mb-4">Новые товары уже доступны!</p>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -14,7 +15,16 @@
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" style="background-size: cover; height: 70vh">
+                @foreach ($lastProducts as $key=>$product)
+                <div class="carousel-item {{$key==0?'active':''}}" style="background-size: cover; height: 70vh">
+                    <img src="{{asset($product->img)}}" class="d-block h-100 img-fluid" style="object-fit: cover; margin: 0 auto;" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 style="text-shadow: 0.1em 0.1em 0.1em black">First slide label</h5>
+                        <p style="text-shadow: 0.1em 0.1em 0.1em black">Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                @endforeach
+                {{-- <div class="carousel-item active" style="background-size: cover; height: 70vh">
                     <img src="https://www.online-tech-tips.com/wp-content/uploads/2021/08/comics1.jpeg" class="d-block h-100 img-fluid" style="object-fit: cover; margin: 0 auto;" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 style="text-shadow: 0.1em 0.1em 0.1em black">First slide label</h5>
@@ -34,7 +44,7 @@
                         <h5 style="text-shadow: 0.1em 0.1em 0.1em black">Third slide label</h5>
                         <p style="text-shadow: 0.1em 0.1em 0.1em black">Some representative placeholder content for the third slide.</p>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

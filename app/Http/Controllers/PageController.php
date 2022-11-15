@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    public function welcomePage(){
+        $lastProducts = Product::query()->orderByDesc('created_at')->limit(3)->get();
+        return view('welcome', ['lastProducts'=>$lastProducts]);
+    }
+
     public function registrationPage(){
         return view('user.registration');
     }
