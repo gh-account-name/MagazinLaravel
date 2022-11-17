@@ -30,11 +30,11 @@ class PageController extends Controller
         return view('admin.editCategory', ['category'=>$category]);
     }
 
-    public function catalogPage(){
-        $products = Product::query()->with('category')->paginate(3);
-        $categories = Categry::all();
-        return view('product.catalog', ['products'=>$products, 'categories'=>$categories]);
-    }
+//    public function catalogPage(){
+//        $products = Product::query()->with('category')->paginate(3);
+//        $categories = Categry::all();
+//        return view('product.catalog', ['products'=>$products, 'categories'=>$categories]);
+//    }
 
     public function productsPage(){
         $categories = Categry::all();

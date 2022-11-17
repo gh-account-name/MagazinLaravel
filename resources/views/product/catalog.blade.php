@@ -7,6 +7,16 @@
 @section('main')
 
     <style>
+
+        .card{
+            transition: 0.3s;
+        }
+
+        .card:hover{
+            transform: scale(1.01);
+            transition: 0.3s;
+        }
+
         @media (max-width: 1400px) {
             .sort-filter{
                 width: 50%;
@@ -88,7 +98,7 @@
 {{--                        <p style="font-size: 18px; font-weight: bold; color: black; margin: 0" class=" text-center mt-2">{{$product->title}}</p>--}}
 {{--                        <p style="font-size: 18px; font-weight: bold; color: black; margin: 0" class="text-center">{{$product->price}} р.</p>--}}
 {{--                    </a>--}}
-                    <a href="{{route('productPage', ['product'=>$product])}}" class="card" style="width: 300px; box-shadow: 0px 0px 10px black; text-decoration: none">
+                    <a href="{{route('productPage', ['product'=>$product])}}" class="card" style="width: 300px; box-shadow: 0px 0px 10px black; text-decoration: none;">
                         <img src="{{$product->img}}" class="card-img-top" alt="..." style="height: 100%">
                         <div class="card-body" style="position: relative">
                             <p class="card-text text-center m-0" style="font-size: 0.7rem; color:rgba(0, 0, 0, .5);">{{$product->categry->title}}</p>

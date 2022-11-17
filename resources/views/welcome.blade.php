@@ -23,13 +23,13 @@
             </div>
             <div class="carousel-inner">
                 @foreach ($lastProducts as $key=>$product)
-                <div class="carousel-item {{$key==0?'active':''}}" style="background-size: cover; height: 70vh">
+                <a href="{{route('productPage', ['product'=>$product])}}" class="carousel-item {{$key==0?'active':''}}" style="background-size: cover; height: 70vh">
                     <img src="{{asset($product->img)}}" class="d-block h-100 img-fluid" style="object-fit: cover; margin: 0 auto;" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 style="text-shadow: 0.1em 0.1em 0.1em black">First slide label</h5>
                         <p style="text-shadow: 0.1em 0.1em 0.1em black">Some representative placeholder content for the first slide.</p>
                     </div>
-                </div>
+                </a>
                 @endforeach
                 {{-- <div class="carousel-item active" style="background-size: cover; height: 70vh">
                     <img src="https://www.online-tech-tips.com/wp-content/uploads/2021/08/comics1.jpeg" class="d-block h-100 img-fluid" style="object-fit: cover; margin: 0 auto;" alt="...">
