@@ -31,19 +31,23 @@ class PageController extends Controller
     }
 
     public function catalogPage(){
-        $products = Product::query()->paginate(3);
+        $products = Product::query()->with('category')->paginate(3);
         $categories = Categry::all();
         return view('product.catalog', ['products'=>$products, 'categories'=>$categories]);
     }
 
     public function productsPage(){
         $categories = Categry::all();
-        $products = Product::query()->latest()->get();
+        $products = Product::query()->with('categry')->latest()->get();
         return view('admin.products', ['categories'=>$categories, 'products'=>$products]);
     }
 
     public function editProductPage(Product $product){
         $categories = Categry::all();
         return view('admin.editProduct', ['product'=>$product, 'categories'=>$categories]);
+    }
+
+    public function productPage(Product $product){
+        return view('product.productPage', ['product'=>$product]);
     }
 }

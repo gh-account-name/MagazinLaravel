@@ -25,6 +25,8 @@ Route::get('/auth', [\App\Http\Controllers\PageController::class, 'authPage'])->
 
 //Route::get('/catalog', [PageController::class, 'catalogPage'])->name('catalogPage');
 
+Route::get('/product/{product}', [PageController::class, 'productPage'])->name('productPage');
+
 //--Функции
 
 Route::post('/registration/save', [\App\Http\Controllers\UserController::class, 'register'])->name('register');

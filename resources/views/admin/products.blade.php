@@ -118,10 +118,10 @@
                     <div class="card" style="width: 300px; box-shadow: 0px 0px 10px black; text-decoration: none;">
                         <img src="{{$product->img}}" class="card-img-top" alt="..." style="height: 100%">
                         <div class="card-body" style="position: relative">
-                            <a href="#" class="text-decoration-none"><h5 class="card-title text-center text-black" style="height: 50px">{{$product->title}}</h5></a>
+                            <a href="{{route('productPage', ['product'=>$product])}}" class="text-decoration-none"><h5 class="card-title text-center text-black" style="height: 50px">{{$product->title}}</h5></a>
                             <p class="card-text text-black">{{$product->price}} руб.</p>
                             <p class="card-text text-black">Количество на скаладе: {{$product->count}}</p>
-                            <p class="card-text text-black">Категория: {{$product->category}}</p>
+                            <p class="card-text text-black">Категория: {{$product->categry->title}}</p>
                             <div class="buttons d-flex justify-content-between mt-3 w-100">
                                 <a href="{{route('editProductPage', ['product'=>$product])}}"><button type="button" class="btn btn-warning" style="font-size: 12px">Редактировать</button></a>
                                 <form action="{{route('deleteProduct', ['product'=>$product])}}" method="post">
