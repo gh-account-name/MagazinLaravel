@@ -27,6 +27,23 @@
 
     <div class="container">
         <h1 class="text-center mt-5">{{$product->title}}</h1>
+
+        @if(session()->has('success'))
+            <div class="d-flex justify-content-center mt-4">
+                <div class="alert text-center alert-success col-4">
+                    {{session('success')}}
+                </div>
+            </div>
+        @endif
+
+        @if(session()->has('error'))
+            <div class="d-flex justify-content-center mt-4">
+                <div class="alert text-center alert-danger col-4">
+                    {{session('error')}}
+                </div>
+            </div>
+        @endif
+
         <div class="content d-flex justify-content-between mt-5" style="padding: 0 10% 0 10%">
             <div class="image col-4 p-1" style="border: 0.4rem rgb(33,37,41) solid; border-radius: .5rem; height:fit-content">
                 <img class="col-12" src="{{$product->img}}" alt="product">
@@ -41,7 +58,13 @@
                     <p>Антагонист: {{$product->antagonist}}</p>
                 @endif
                 <p>Осталось в наличии: {{$product->count}} шт.</p>
-                <button type="button" class="btn btn-primary btn-lg mt-3">Купить</button>
+
+                <form action="{{route('addToCart', ['product'=>$product])}}" method="POST">
+                    @csrf
+                    @method('post')
+                    <button type="submit" class="btn btn-primary btn-lg mt-3">Купить</button>
+                </form>
+                
             </div>
         </div>
     </div>

@@ -14,4 +14,9 @@ class Product extends Model
         return $this->belongsTo(Categry::class);
     }
 
+    // Связь 1/м с таблицей "Cart" (необязательно)
+    // public function cart(){
+    //     return $this->hasMany(Cart::class);
+    // }
+
 }

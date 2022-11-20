@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +29,8 @@ Route::get('/auth', [\App\Http\Controllers\PageController::class, 'authPage'])->
 
 Route::get('/product/{product}', [PageController::class, 'productPage'])->name('productPage');
 
+Route::get('/cart', [PageController::class, 'cartPage'])->name('cartPage');
+
 //--Функции
 
 Route::post('/registration/save', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
@@ -40,6 +44,14 @@ Route::get('/catalog/filter', [ProductController::class, 'filter'])->name('filte
 Route::get('/catalog/sort', [ProductController::class, 'sort'])->name('sort');
 
 Route::get('/catalog', [ProductController::class, 'sort_filter'])->name('catalogPage');
+
+Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('addToCart');
+
+Route::post('/cart/remove/{product}', [CartController::class, 'minus'])->name('removeFromCart');
+
+Route::delete('/cart/delete/{product}', [CartController::class, 'destroy'])->name('deleteFromCart');
+
+Route::put('/cart/order/{order}', [OrderController::class, 'update'])->name('makeAnOrder');
 
 //--Middleware
 

@@ -7,17 +7,18 @@
 @section('main')
     <div class="container" id="regApp">
         <div class="row justify-content-center"><h2 class="text-center m-5">Авторизация</h2></div>
+
         @if(session()->has('success'))
-            <div class="container col-4">
-                <div class="alert text-center alert-success">
+            <div class="d-flex justify-content-center mt-4">
+                <div class="alert text-center alert-success col-4">
                     {{session('success')}}
                 </div>
             </div>
         @endif
 
         @if(session()->has('error'))
-            <div class="col-12 d-flex justify-content-center">
-                <div class="alert text-center alert-danger">
+            <div class="d-flex justify-content-center mt-4">
+                <div class="alert text-center alert-success col-4">
                     {{session('error')}}
                 </div>
             </div>

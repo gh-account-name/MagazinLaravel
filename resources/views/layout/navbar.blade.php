@@ -49,7 +49,7 @@
                         <a class="nav-link text-white" href="#">Личный кабинет</a>
                     </li>
                     <li class="nav-item">
-                        <a class="text-white nav-link" href="#">Корзина</a>
+                        <a class="text-white nav-link" href="{{route('cartPage')}}">Корзина</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Мои заказы</a>

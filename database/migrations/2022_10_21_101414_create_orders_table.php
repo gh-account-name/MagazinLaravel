@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->float('summ')->default(0);
             $table->string('status')->default('новый');
-            $table->text('comment');
+            $table->text('comment')->default('');
             $table->timestamps();
         });
     }

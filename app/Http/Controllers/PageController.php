@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Categry;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -49,5 +52,18 @@ class PageController extends Controller
 
     public function productPage(Product $product){
         return view('product.productPage', ['product'=>$product]);
+    }
+
+    public function cartPage(){
+        $order = Order::query()
+            ->where('user_id', Auth::id())
+            ->where('status', 'новый')->firstOrNew();
+        
+        
+        $cart = Cart::query()
+            ->where('order_id', $order->id)
+            ->with('product')->get();
+
+        return view('user.cart', ['cart'=>$cart]);
     }
 }
