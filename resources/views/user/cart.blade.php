@@ -49,18 +49,10 @@
             background-color: #e4ac06;
             transition: 0.3s;
         }
-        
+
     </style>
 
     <div class="container">
-
-        @if(session()->has('processing'))
-            <div class="d-flex justify-content-center mt-4">
-                <div class="alert text-center alert-success col-4">
-                    {{session('processing')}}
-                </div>
-            </div>
-        @endif
 
         @if(session()->has('error'))
             <div class="d-flex justify-content-center mt-4">
@@ -145,11 +137,11 @@
                     @if (count($cart)!=0)
                     <div class="sum mt-5">
                         <p class="h4">Итого: {{$item->order->summ}} руб.</p>
-                    </div>  
+                    </div>
                     @else
                     <div class="mt-5">
                         <p class="h4 text-center">Корзина пуста</p>
-                    </div>  
+                    </div>
                     @endif
                 </div>
             </div>

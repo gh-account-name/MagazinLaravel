@@ -19,8 +19,8 @@ class CartController extends Controller
         $cart = Cart::query()
             ->where('order_id', $order->id)
             ->where('product_id', $product->id)
-            ->firstOrCreate(['order_id'=>$order->id], ['product_id'=>$product->id]);  
-            
+            ->firstOrCreate(['order_id'=>$order->id], ['product_id'=>$product->id]);
+
         if($cart->count){
             if ($product->count > $cart->count){
                 $cart->count += 1;
@@ -55,8 +55,8 @@ class CartController extends Controller
         $cart = Cart::query()
             ->where('order_id', $order->id)
             ->where('product_id', $product->id)
-            ->first();  
-        
+            ->first();
+
         if($cart->count > 1){
             $cart->count -= 1;
             $cart->summ -= $product->price;
@@ -83,7 +83,7 @@ class CartController extends Controller
         $cart = Cart::query()
             ->where('order_id', $order->id)
             ->where('product_id', $product->id)
-            ->first();  
+            ->first();
 
         $order->summ -= $product->price * $cart->count;
         $cart->delete();

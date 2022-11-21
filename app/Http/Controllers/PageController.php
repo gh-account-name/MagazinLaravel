@@ -58,12 +58,27 @@ class PageController extends Controller
         $order = Order::query()
             ->where('user_id', Auth::id())
             ->where('status', 'новый')->firstOrNew();
-        
-        
+
+
         $cart = Cart::query()
             ->where('order_id', $order->id)
             ->with('product')->get();
 
         return view('user.cart', ['cart'=>$cart]);
+    }
+
+    public function ordersPage(){
+        $orders = Order::query()
+            ->where('user_id', Auth::id())->where('status','!=','новый')->withSum('cart', 'count')->get();
+
+
+//        foreach ($orders as $key => $order){
+//            if ($order->summ == 0){
+//                unset($orders[$key]);
+//            }
+//
+//        }
+
+        return view('user.orders', ['orders'=>$orders]);
     }
 }

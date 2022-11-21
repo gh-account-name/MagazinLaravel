@@ -31,6 +31,8 @@ Route::get('/product/{product}', [PageController::class, 'productPage'])->name('
 
 Route::get('/cart', [PageController::class, 'cartPage'])->name('cartPage');
 
+Route::get('/orders', [PageController::class, 'ordersPage'])->name('ordersPage');
+
 //--Функции
 
 Route::post('/registration/save', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
@@ -52,6 +54,8 @@ Route::post('/cart/remove/{product}', [CartController::class, 'minus'])->name('r
 Route::delete('/cart/delete/{product}', [CartController::class, 'destroy'])->name('deleteFromCart');
 
 Route::put('/cart/order/{order}', [OrderController::class, 'update'])->name('makeAnOrder');
+
+Route::delete('/order/delete/{order}', [OrderController::class, 'destroy'])->name('cancelOrder');
 
 //--Middleware
 

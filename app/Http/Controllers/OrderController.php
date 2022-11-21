@@ -20,11 +20,16 @@ class OrderController extends Controller
         if(md5($request->password) === Auth::user()->password){
             $order->status = 'в обработке';
             $order->update();
-            
-            return redirect()->back()->with('processing', 'Заказ обрабатывается'); //Пока что так, потом на другую страницу надо
+
+            return redirect()->route('ordersPage')->with('success', 'Мы обрабатываем ваш заказ');
         } else {
             return redirect()->back()->with('error', 'Неверный пароль');
         }
+    }
+
+    public function destroy(Order $order){
+        $order->delete();
+        return redirect()->back()->with('alert', 'Заказ отменён');
     }
 
 }

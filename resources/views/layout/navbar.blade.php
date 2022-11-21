@@ -52,7 +52,7 @@
                         <a class="text-white nav-link" href="{{route('cartPage')}}">Корзина</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Мои заказы</a>
+                        <a class="nav-link text-white" href="{{route('ordersPage')}}">Мои заказы</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{route('logout')}}">Выйти</a>

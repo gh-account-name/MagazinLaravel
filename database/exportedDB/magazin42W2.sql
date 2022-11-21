@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 11 2022 г., 10:18
--- Версия сервера: 8.0.30
+-- Время создания: Ноя 21 2022 г., 11:58
+-- Версия сервера: 5.7.39
 -- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `carts` (
-  `id` bigint UNSIGNED NOT NULL,
-  `product_id` bigint UNSIGNED NOT NULL,
-  `order_id` bigint UNSIGNED NOT NULL,
-  `count` int NOT NULL DEFAULT '0',
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `count` int(11) NOT NULL DEFAULT '0',
   `summ` double(8,2) NOT NULL DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -44,8 +44,8 @@ CREATE TABLE `carts` (
 --
 
 CREATE TABLE `categries` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -65,12 +65,12 @@ INSERT INTO `categries` (`id`, `title`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -81,9 +81,9 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -107,11 +107,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
   `summ` double(8,2) NOT NULL DEFAULT '0.00',
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'новый',
-  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'новый',
+  `comment` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -123,8 +123,8 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -135,12 +135,12 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -154,14 +154,14 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `products` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `categry_id` bigint UNSIGNED NOT NULL,
-  `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categry_id` bigint(20) UNSIGNED NOT NULL,
+  `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `age` date DEFAULT NULL,
-  `antagonist` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `antagonist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` double(8,2) NOT NULL,
-  `count` int NOT NULL,
+  `count` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -175,7 +175,18 @@ INSERT INTO `products` (`id`, `title`, `categry_id`, `img`, `age`, `antagonist`,
 (4, 'Человек паук - вечная юность', 3, '/storage/public/img/wtDjwaQvRVYpZBMlPQRDHXtBhOTg5ohjfklNQzZp.jpg', '2006-02-23', 'Злодеи', 199.00, 231, '2022-11-09 02:31:43', '2022-11-09 02:31:43'),
 (5, 'Бэтмен', 2, '/storage/public/img/oWTgplODmYxDKvEbV70tnEEw5U0FGntn4v4iZIEC.jpg', '2011-02-10', 'Джокер', 349.00, 125, '2022-11-09 02:58:19', '2022-11-09 02:58:19'),
 (6, 'Бэтмен который смеётся', 2, '/storage/public/img/Vy5sBJvbWP5RS6L3HyfYsy7C84bNdTuxiYz0mpcR.jpg', '2012-02-23', 'Бэтмен', 349.00, 213, '2022-11-09 03:00:21', '2022-11-09 03:00:21'),
-(7, 'Мстители', 3, '/storage/public/img/kfBuUK4wz4K3mY8BP6tixSop2qp0XhiZu9PkWuV5.jpg', '2004-07-03', 'Злодеи', 299.00, 132, '2022-11-09 03:04:52', '2022-11-09 03:04:52');
+(7, 'Мстители', 3, '/storage/public/img/kfBuUK4wz4K3mY8BP6tixSop2qp0XhiZu9PkWuV5.jpg', '2004-07-03', 'Злодеи', 299.00, 132, '2022-11-09 03:04:52', '2022-11-09 03:04:52'),
+(10, 'Amazing Spider Man', 3, '/storage/public/img/8IuSL9BC2jDr3FCo07oeJLYojplmQMcjhjjahJGR.jpg', '2011-02-21', NULL, 439.50, 23, '2022-11-11 09:12:41', '2022-11-11 09:12:41'),
+(16, 'Бэтмен перерождение (2016)', 2, '/storage/public/img/wMheFT0Uoq5TH8PizXELuB6pAN7pmkJEdE8r9zYH.jpg', '2016-01-31', NULL, 459.50, 42, '2022-11-12 06:57:30', '2022-11-12 06:57:30'),
+(17, 'Batman', 2, '/storage/public/img/00n6ocsQPEismwY7HBTZ44aa6eDWpOo8v5UH9H5w.jpg', '2014-06-26', NULL, 349.99, 23, '2022-11-12 06:59:08', '2022-11-12 06:59:08'),
+(18, 'Avengers - earth\'s mightiest heroes', 3, '/storage/public/img/sB1IoBP3wpDUsdOaD7DYfb5VDe6JsxCjuCIR0hc9.jpg', NULL, NULL, 324.90, 12, '2022-11-12 07:03:33', '2022-11-12 07:03:33'),
+(19, 'Avengers', 3, '/storage/public/img/SeHmMXXB5nmRqAV4i0MIaTbkGsy6yCF7FyglWgNx.jpg', NULL, NULL, 499.00, 17, '2022-11-12 07:04:05', '2022-11-12 07:04:05'),
+(20, 'Мстители - перчатка бесконечности', 3, '/storage/public/img/HOyXL4BD8TDtiZgLDBqPEtPMZzAx0GZIeGrxmpq7.jpg', NULL, NULL, 299.00, 42, '2022-11-12 07:04:56', '2022-11-12 07:04:56'),
+(21, 'Spider-Man', 3, '/storage/public/img/4f8vPTUPScm1CcG6qQoHmDEnyuz0hCxEkyr1yPdl.jpg', NULL, NULL, 399.50, 13, '2022-11-12 07:05:59', '2022-11-12 07:05:59'),
+(22, 'Detective Comics: 80 Years of Batman Deluxe Edition', 2, '/storage/public/img/UpetdbwDsDCP6RqCRnGPvw2EWjfClBIKfT9iJ2wC.jpg', NULL, NULL, 349.00, 124, '2022-11-12 08:11:20', '2022-11-12 08:11:20'),
+(23, 'Secret Origin: The Story of DC Comics', 2, '/storage/public/img/CyzRK27UI9aAR9fdnuDG4BZBw5jyZEb2Fc3TxBiN.jpg', NULL, NULL, 249.00, 52, '2022-11-12 08:12:54', '2022-11-12 08:32:29'),
+(24, 'Superman: Secret Origin Deluxe Edition', 2, '/storage/public/img/StrORdGPsATYKVBCqJmI8PtieCMr3JVoLiel2wZo.jpg', NULL, NULL, 429.00, 11, '2022-11-12 08:13:56', '2022-11-12 08:13:56'),
+(25, 'DC COMICS: Generaciones', 2, '/storage/public/img/eKJ7UDuFsrfcccl0OrtCT1mzzO6mE7vg0ovVSRYh.jpg', NULL, NULL, 249.00, 142, '2022-11-12 08:16:35', '2022-11-12 08:16:35');
 
 -- --------------------------------------------------------
 
@@ -184,15 +195,15 @@ INSERT INTO `products` (`id`, `title`, `categry_id`, `img`, `age`, `antagonist`,
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `surname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `patronymic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `login` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `surname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `patronymic` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `login` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -281,49 +292,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `categries`
 --
 ALTER TABLE `categries`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
