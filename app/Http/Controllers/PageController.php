@@ -81,4 +81,15 @@ class PageController extends Controller
 
         return view('user.orders', ['orders'=>$orders]);
     }
+
+    public function adminOrdersPage(){
+        $orders = Order::query()
+            ->where('status','!=','новый')->get();
+
+        return view('admin.orders', ['orders'=>$orders]);
+    }
+
+    public function rejectOrderPage(Order $order){
+        return view('admin.rejectOrder', ['order'=>$order]);
+    }
 }

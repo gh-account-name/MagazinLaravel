@@ -61,25 +61,37 @@ Route::delete('/order/delete/{order}', [OrderController::class, 'destroy'])->nam
 
 Route::group(['middleware'=>['auth', 'admin'], 'prefix'=>'admin'], function (){
 
+    // --Страницы
+
     Route::get('/categories', [\App\Http\Controllers\PageController::class, 'categoriesPage'])->name('categoriesPage');
 
-    Route::post('/addCategory', [\App\Http\Controllers\CategryController::class, 'addCategory'])->name('addCategory');
-
     Route::get('/edit/{category}', [\App\Http\Controllers\PageController::class, 'editCategoryPage'])->name('editCategoryPage');
+
+    Route::get('/products', [PageController::class, 'productsPage'])->name('productsPage');
+
+    Route::get('/editProduct/{product}', [PageController::class, 'editProductPage'])->name('editProductPage');
+
+    Route::get('/orders', [PageController::class, 'adminOrdersPage'])->name('adminOrdersPage');
+
+    Route::get('/rejectOrder/{order}', [PageController::class, 'rejectOrderPage'])->name('rejectOrderPage');
+
+    // --Функции
+
+    Route::post('/addCategory', [\App\Http\Controllers\CategryController::class, 'addCategory'])->name('addCategory');
 
     Route::put('/update/{category}', [\App\Http\Controllers\CategryController::class, 'update'])->name('updateCategory');
 
     Route::delete('/delete/{category}', [\App\Http\Controllers\CategryController::class, 'destroy'])->name('deleteCategory');
 
-    Route::get('/products', [PageController::class, 'productsPage'])->name('productsPage');
-
     Route::post('/addProduct', [ProductController::class, 'addProduct'])->name('addProduct');
-
-    Route::get('/editProduct/{product}', [PageController::class, 'editProductPage'])->name('editProductPage');
 
     Route::put('/updateProduct/{product}', [ProductController::class, 'update'])->name('updateProduct');
 
     Route::delete('/deleteProduct/{product}', [ProductController::class, 'destroy'])->name('deleteProduct');
+
+    Route::put('/confirmOrder/{order}', [OrderController::class, 'confirmOrder'])->name('confirmOrder');
+
+    Route::put('/reject/{order}', [OrderController::class, 'rejectOrder'])->name('rejectOrder');
 
 });
 
