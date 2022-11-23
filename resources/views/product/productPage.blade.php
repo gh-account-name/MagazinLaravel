@@ -59,14 +59,19 @@
                 @endif
                 <p>Осталось в наличии: {{$product->count}} шт.</p>
 
+                @auth()
                 <form action="{{route('addToCart', ['product'=>$product])}}" method="POST">
                     @csrf
                     @method('post')
                     <button type="submit" class="btn btn-primary btn-lg mt-3">Купить</button>
                 </form>
-                
+                @endauth
+
+                @guest()
+                    <a href="{{route('authPage')}}"><button type="submit" class="btn btn-primary btn-lg mt-3">Купить</button></a>
+                @endguest
             </div>
         </div>
     </div>
-    
+
 @endsection
