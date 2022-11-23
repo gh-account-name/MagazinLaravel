@@ -106,7 +106,7 @@
     {{--            </div>--}}
     {{--        @endforeach--}}
     {{--    </div>--}}
-    
+
         <div class="products row row-cols-1 row-cols-md-3 g-5 mt-4">
             @foreach($products as $key=>$product)
                 <div class="col d-flex justify-content-center">
@@ -120,7 +120,10 @@
                         <div class="card-body" style="position: relative">
                             <a href="{{route('productPage', ['product'=>$product])}}" class="text-decoration-none"><h5 class="card-title text-center text-black" style="height: 50px">{{$product->title}}</h5></a>
                             <p class="card-text text-black">{{$product->price}} руб.</p>
-                            <p class="card-text text-black">Количество на скаладе: {{$product->count}}</p>
+                            <p class="card-text
+                                @if($product->count===0)text-danger fw-bold
+                                @elseif($product->count<10) text-warning fw-bold @endif"
+                            >Количество на скаладе: {{$product->count}}</p>
                             <p class="card-text text-black">Категория: {{$product->categry->title}}</p>
                             <div class="buttons d-flex justify-content-between mt-3 w-100">
                                 <a href="{{route('editProductPage', ['product'=>$product])}}"><button type="button" class="btn btn-warning" style="font-size: 12px">Редактировать</button></a>

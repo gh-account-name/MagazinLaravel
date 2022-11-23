@@ -139,7 +139,7 @@ class ProductController extends Controller
             $products = $products->orderBy($request->parameter);
        }
 
-       $products = $products->latest()->paginate(3)->withQueryString();
+       $products = $products->where('count', '!=', 0)->latest()->paginate(3)->withQueryString();
 
         return view('product.catalog', ['products'=>$products, 'categories'=>$categories]);
     }

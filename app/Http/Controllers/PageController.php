@@ -92,4 +92,11 @@ class PageController extends Controller
     public function rejectOrderPage(Order $order){
         return view('admin.rejectOrder', ['order'=>$order]);
     }
+
+    public function orderDetailsPage(Order $order){
+        $cart = Cart::query()
+            ->where('order_id', $order->id)->get();
+
+        return view('product.orderDetailsPage', ['cart'=>$cart]);
+    }
 }

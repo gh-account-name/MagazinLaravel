@@ -63,4 +63,17 @@ class OrderController extends Controller
         return redirect()->route('adminOrdersPage')->with('alert', 'Вы отклонили заказ №' . $order->id);
     }
 
+    public function filterOrders(Request $request){
+
+        if ($request->status){
+            $orders = Order::query()->where('status', $request->status)->get();
+        } else {
+            $orders = Order::query()
+                ->where('status','!=','новый')->get();
+        }
+
+
+        return view('admin.orders', ['orders'=>$orders]);
+    }
+
 }

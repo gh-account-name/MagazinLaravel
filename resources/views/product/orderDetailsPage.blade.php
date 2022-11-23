@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title')
-    Мои заказы
+    Детали заказа
 @endsection
 
 @section('main')
@@ -22,11 +22,6 @@
             border-bottom: 1px #dee2e6 solid;
         }
 
-        .buttons button {
-            font-size: 0.7rem;
-            padding: 0.3rem 0.5rem;
-        }
-
         /* .pmform{
             width: 40px;
             height: 40px;
@@ -37,26 +32,10 @@
 
     </style>
 
-    <div class="container pt-5">
-
-        @if(session()->has('success'))
-            <div class="d-flex justify-content-center mt-4">
-                <div class="alert text-center alert-success col-4">
-                    {{session('success')}}
-                </div>
-            </div>
-        @endif
-
-        @if(session()->has('alert'))
-            <div class="d-flex justify-content-center mt-4">
-                <div class="alert text-center alert-warning col-4">
-                    {{session('alert')}}
-                </div>
-            </div>
-        @endif
+    <div class="container">
 
         <div class="d-flex justify-content-center flex-column align-items-center col-12">
-            <h2>Мои заказы</h2>
+            <h2 class="m-5">Детали заказа №{{$cart[0]->order_id}}</h2>
             <div class="cartTable col-10">
                 {{-- <table class="table">
                     <thead>
@@ -91,41 +70,39 @@
                 <div class="tabl">
                     <div class="thead row" style="font-weight: bold; border-bottom: 3px #212529 solid">
                         <div class="col-1 text-center">#</div>
-                        <div class="col-3">Стоимость</div>
-                        <div class="col-3">Кол-во товаров</div>
-                        <div class="col-3">Статус</div>
-                        <div class="col-2">Действие</div>
+                        <div class="col-5">Товар</div>
+                        <div class="col-2">Стоимость за шт.</div>
+                        <div class="col-2">Количество</div>
+                        <div class="col-2">Общая стоимость</div>
                     </div>
-                    @foreach($orders as $order)
+                    @foreach($cart as $key => $item)
                         <div class="tbody row">
-                            <div class="col-1 d-flex align-items-center justify-content-center" style="font-weight: bold">{{$order->id}}</div>
-                            <div class="col-3 d-flex align-items-center" style="font-weight: bold">{{$order->summ}} руб.</div>
-                            <div class="col-3 d-flex align-items-center" style="font-weight: bold;">{{$order->cart_sum_count}}</div>
-                            <div class="col-3 d-flex align-items-center
-                                @if($order->status == 'подтверждён') text-success @endif
-                                 @if($order->status == 'в обработке') text-warning @endif
-                                 @if($order->status == 'отклонён') text-danger @endif"
-                                 style="font-weight: bold">
-                                {{$order->status}}</div>
-                            <div class="col-2 buttons d-flex align-items-center justify-content-between">
-                                <form action="{{route('cancelOrder', ['order'=>$order])}}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn @if($order->status == 'подтверждён') disabled @endif btn-danger">Отменить</button>
-                                </form>
-                                <a href="{{route('orderDetailsPage', ['order'=>$order])}}"><button type="submit" class="btn  btn-dark">Подробнее</button></a>
+                            <div class="col-1 d-flex align-items-center justify-content-center" style="font-weight: bold">{{$key+1}}</div>
+                            <div class="col-5 d-flex align-items-center">
+                                <img src="{{asset($item->product->img)}}" alt="product" style="width:15%; margin-right: 5%">
+                                <a href="{{route('productPage', ['product'=>$item->product])}}"><p style="font-weight: bold; margin:0;">{{$item->product->title}}</p></a>
+                            </div>
+                            <div class="col-2 d-flex align-items-center" style="font-weight: bold">{{$item->product->price}} руб.</div>
+                            <div class="col-2 d-flex align-items-center" style="font-weight: bold">
+                                <p class="m-0 p-2">{{$item->count}}</p>
+                            </div>
+                            <div class="col-2 d-flex align-items-center" style="font-weight: bold">
+                                {{$item->summ}} руб.
                             </div>
                         </div>
                     @endforeach
 
-                    @if (count($orders)==0)
+                    @if (count($cart)!=0)
+                        <div class="sum mt-5">
+                            <p class="h4">Итого: {{$item->order->summ}} руб.</p>
+                        </div>
+                    @else
                         <div class="mt-5">
-                            <p class="h4 text-center">Заказов нет</p>
+                            <p class="h4 text-center">Корзина пуста</p>
                         </div>
                     @endif
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

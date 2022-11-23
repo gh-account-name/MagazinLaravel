@@ -33,6 +33,8 @@ Route::get('/cart', [PageController::class, 'cartPage'])->name('cartPage');
 
 Route::get('/orders', [PageController::class, 'ordersPage'])->name('ordersPage');
 
+Route::get('/orderDetails/{order}', [PageController::class, 'orderDetailsPage'])->name('orderDetailsPage');
+
 //--Функции
 
 Route::post('/registration/save', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
@@ -56,6 +58,7 @@ Route::delete('/cart/delete/{product}', [CartController::class, 'destroy'])->nam
 Route::put('/cart/order/{order}', [OrderController::class, 'update'])->name('makeAnOrder');
 
 Route::delete('/order/delete/{order}', [OrderController::class, 'destroy'])->name('cancelOrder');
+
 
 //--Middleware
 
@@ -92,6 +95,8 @@ Route::group(['middleware'=>['auth', 'admin'], 'prefix'=>'admin'], function (){
     Route::put('/confirmOrder/{order}', [OrderController::class, 'confirmOrder'])->name('confirmOrder');
 
     Route::put('/reject/{order}', [OrderController::class, 'rejectOrder'])->name('rejectOrder');
+
+    Route::get('/orders/filter', [OrderController::class, 'filterOrders'])->name('filterOrders');
 
 });
 

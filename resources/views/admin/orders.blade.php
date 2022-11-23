@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title')
-    Администрирование заказов 
+    Администрирование заказов
 @endsection
 
 @section('main')
@@ -57,6 +57,22 @@
 
         <div class="d-flex justify-content-center flex-column align-items-center col-12">
             <h2>Заказы</h2>
+
+            <div class="sort-filter d-flex col-10 mb-5 mt-3">
+                <form class="filter d-flex justify-content-between col-4" action="{{route('filterOrders')}}">
+                <span>
+                    <label for="status">Фильтрация по категориям:</label>
+                    <select id="status" name="status" class="form-select mt-1">
+                        <option value="0">Все</option>
+                        <option value="в обработке">В обработке</option>
+                        <option value="отклонён">Отклонены</option>
+                        <option value="подтверждён">Подтверждены</option>
+                    </select>
+                </span>
+                    <button type="submit" class="btn btn-primary" style="transform: translateY(50%); height:70%">Применить</button>
+                </form>
+            </div>
+
             <div class="cartTable col-10">
                 {{-- <table class="table">
                     <thead>
@@ -100,7 +116,7 @@
                         <div class="tbody row">
                             <div class="col-1 d-flex align-items-center justify-content-center" style="font-weight: bold">{{$order->id}}</div>
                             <div class="col-4 d-flex align-items-center" style="font-weight: bold">{{$order->user->name}} {{$order->user->surname}} {{$order->user->patronymic}}</div>
-                            <div class="col-2 d-flex align-items-center" style="font-weight: bold;">{{$order->summ}}</div>
+                            <div class="col-2 d-flex align-items-center" style="font-weight: bold;">{{$order->summ}} руб.</div>
                             <div class="col-2 d-flex align-items-center
                                 @if($order->status == 'подтверждён') text-success @endif
                                  @if($order->status == 'в обработке') text-warning @endif
@@ -116,7 +132,7 @@
                                 </form>
                                 <a href="{{route('rejectOrderPage', ['order'=>$order])}}"><button type="submit" class="btn btn-danger">Отменить</button></a>
                                 @endif
-                                <a href=""><button type="submit" class="btn  btn-dark">Подробнее</button></a>
+                                <a href="{{route('orderDetailsPage', ['order'=>$order])}}"><button type="submit" class="btn  btn-dark">Подробнее</button></a>
                             </div>
                         </div>
                     @endforeach

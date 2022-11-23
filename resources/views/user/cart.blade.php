@@ -108,9 +108,9 @@
                         <div class="col-1 d-flex align-items-center justify-content-center" style="font-weight: bold">{{$key+1}}</div>
                         <div class="col-5 d-flex align-items-center">
                             <img src="{{asset($item->product->img)}}" alt="product" style="width:15%; margin-right: 5%">
-                                    <p style="font-weight: bold; margin:0;">{{$item->product->title}}</p>
+                                <a href="{{route('productPage', ['product'=>$item->product])}}"><p style="font-weight: bold; margin:0;">{{$item->product->title}}</p></a>
                         </div>
-                        <div class="col-2 d-flex align-items-center" style="font-weight: bold">{{$item->summ}}</div>
+                        <div class="col-2 d-flex align-items-center" style="font-weight: bold">{{$item->summ}} руб.</div>
                         <div class="col-2 d-flex align-items-center" style="font-weight: bold">
                             <form action="{{route('removeFromCart', ['product'=>$item->product])}}" method="post" class="pmform">
                                 @csrf
