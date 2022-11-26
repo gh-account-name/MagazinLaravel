@@ -45,9 +45,9 @@
                             </ul>
                         </li>
                     @endif
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link text-white" href="#">Личный кабинет</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="text-white nav-link" href="{{route('cartPage')}}">Корзина</a>
                     </li>
